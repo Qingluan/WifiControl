@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:orientation="vertical"
+        android:layout_margin="@dimen/activity_vertical_margin"
+
+        >
+        <RadioGroup
+            android:id="@+id/radio_group_screens"
+            android:layout_width="match_parent"
+            android:layout_weight="3"
+            android:layout_height="0dp">
+
+            <RadioButton
+                android:id="@+id/radio_singal_animations"
+                android:layout_width="match_parent"
+                android:layout_weight="2.5"
+                android:text="@string/single_animation"
+                android:layout_height="30dp" />
+            <RadioButton
+                android:id="@+id/radio_double_animations"
+                android:layout_width="match_parent"
+                android:layout_weight="2.5"
+                android:text="@string/double_animation"
+                android:layout_height="30dp" />
+            <RadioButton
+                android:id="@+id/radio_triple_animations"
+                android:layout_width="match_parent"
+                android:layout_weight="2.5"
+                android:text="@string/triple_animations"
+                android:layout_height="30dp" />
+
+            <RadioButton
+                android:id="@+id/radio_quadruple_animations"
+                android:layout_width="match_parent"
+                android:layout_weight="2.5"
+                android:text="@string/quadruple_animations"
+                android:layout_height="30dp" />
+
+        </RadioGroup>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:orientation="vertical"
+        android:layout_margin="@dimen/activity_vertical_margin"
+        >
+        <Button
+            android:id="@+id/bt_choose_screen"
+            android:layout_width="match_parent"
+            android:layout_weight="3"
+            android:hint="@string/choose_screen"
+            android:layout_height="0dp" />
+        <Button
+            android:id="@+id/bt_frozen"
+            android:layout_width="match_parent"
+            android:layout_weight="3"
+            android:hint="@string/froze"
+            android:layout_height="0dp" />
+        <Button
+            android:id="@+id/bt_scale_screen"
+            android:layout_width="match_parent"
+            android:layout_weight="3"
+            android:hint="@string/scale_screen"
+            android:layout_height="0dp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:orientation="vertical"
+        android:layout_margin="@dimen/activity_vertical_margin"
+        >
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_weight="3"
+            android:textAlignment="center"
+            android:textSize="25sp"
+            android:text="@string/color_setting"
+            android:layout_height="0dp" />
+        <TextView
+            android:id="@+id/tv_lighting"
+            android:layout_width="fill_parent"
+            android:layout_weight="3"
+            android:textAlignment="center"
+            android:text="@string/lighting"
+            android:layout_height="0dp" />
+        <TextView
+            android:id="@+id/tv_contrast"
+            android:layout_width="fill_parent"
+            android:layout_weight="3"
+            android:textAlignment="center"
+            android:text="@string/contrast"
+            android:layout_height="0dp" />
+        <TextView
+            android:id="@+id/tv_saturation"
+            android:layout_width="fill_parent"
+            android:layout_weight="3"
+            android:textAlignment="center"
+            android:text="@string/saturation"
+            android:layout_height="0dp" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">WiFiControll</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_section2">信号源切换</string>
+    <string name="title_section3">功能设置</string>
+    <string name="title_section1">屏幕设置</string>
+    <string name="send">发送</string>
+    <string name="Resolution"><![CDATA[屏幕分辨率 >]]></string>
+    <string name="resoution_default">Default</string>
+    <string name="horizontal_point">水平点数</string>
+    <string name="vertical_point">垂直点数</string>
+    <string name="setting_options">选项设置</string>
+    <string name="setting_default">默认选项</string>
+    <string name="horizontal_position">水平位置</string>
+    <string name="vertical_position">垂直位置</string>
+    <string name="AVD">AVD</string>
+    <string name="AV1">AV1</string>
+    <string name="VGA">VGA</string>
+    <string name="DV1">DV1</string>
+    <string name="HDMI">HDMI</string>
+    <string name="single_animation">单画面</string>
+    <string name="double_animation">双画面</string>
+    <string name="triple_animations">三画面</string>
+    <string name="quadruple_animations">四画面</string>
+    <string name="choose_screen">选择屏幕</string>
+    <string name="froze">冻结</string>
+    <string name="scale_screen">局部全屏</string>
+    <string name="color_setting">色彩设置</string>
+    <string name="lighting">亮度</string>
+    <string name="contrast">对比度</string>
+    <string name="saturation">饱和度</string>
+    <string name="title_section4">网络测试</string>
+    <string name="testIp">IP:</string>
+    <string name="bt_test_ip">Ping</string>
+    <string name="test_command">测试指令</string>
+
+</resources>
