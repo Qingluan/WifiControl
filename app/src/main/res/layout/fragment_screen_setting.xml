@@ -59,16 +59,13 @@
             android:orientation="horizontal"
             android:layout_margin="@dimen/activity_vertical_margin"
             >
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="3"
-                android:text="@string/horizontal_point"
-                android:layout_height="fill_parent" />
+
 
             <EditText
                 android:id="@+id/edit_horizontal_point"
                 android:layout_width="0dp"
                 android:layout_weight="7"
+                android:inputType="numberDecimal"
                 android:hint="@string/horizontal_point"
                 android:layout_height="fill_parent" />
 
@@ -81,20 +78,30 @@
             android:orientation="horizontal"
             android:layout_margin="@dimen/activity_vertical_margin"
             >
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="3"
-                android:text="@string/vertical_position"
-                android:layout_height="fill_parent" />
+
             <EditText
                 android:id="@+id/edit_vertical_point"
                 android:layout_width="0dp"
                 android:layout_weight="7"
                 android:textAlignment="gravity"
+                android:inputType="numberDecimal"
                 android:hint="@string/vertical_point"
                 android:layout_height="fill_parent" />
 
+
+            <Button
+                android:id="@+id/bt_send_info_point"
+                android:layout_width="0dp"
+                android:layout_weight="5"
+                android:layout_marginLeft="@dimen/activity_vertical_margin"
+                android:layout_marginRight="@dimen/activity_vertical_margin"
+                android:layout_height="match_parent"
+                android:hint="@string/send_scale"
+                />
+
+
         </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -103,15 +110,12 @@
             android:orientation="horizontal"
             android:layout_margin="@dimen/activity_vertical_margin"
             >
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="3"
-                android:hint="@string/horizontal_position"
-                android:layout_height="fill_parent" />
+
             <EditText
                 android:id="@+id/edit_horizontal_position"
                 android:layout_width="0dp"
                 android:layout_weight="7"
+                android:inputType="numberDecimal"
                 android:textAlignment="gravity"
                 android:hint="@string/horizontal_position"
                 android:layout_height="fill_parent" />
@@ -125,38 +129,29 @@
             android:orientation="horizontal"
             android:layout_margin="@dimen/activity_vertical_margin"
             >
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="3"
-                android:text="@string/vertical_position"
-                android:layout_height="fill_parent" />
+
             <EditText
                 android:id="@+id/edit_vertical_position"
                 android:layout_width="0dp"
                 android:layout_weight="7"
+                android:inputType="numberDecimal"
                 android:textAlignment="gravity"
                 android:hint="@string/vertical_position"
                 android:layout_height="fill_parent" />
+            <Button
+                android:id="@+id/bt_send_info"
+                android:layout_width="0dp"
+                android:layout_weight="5"
+                android:layout_marginLeft="@dimen/activity_vertical_margin"
+                android:layout_marginRight="@dimen/activity_vertical_margin"
+                android:layout_height="fill_parent"
+                android:hint="@string/send_position"
+                />
 
         </LinearLayout>
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:layout_margin="@dimen/activity_vertical_margin"
-        >
 
-        <Button
-            android:id="@+id/bt_send_info"
-            android:layout_width="fill_parent"
-            android:layout_marginLeft="@dimen/activity_vertical_margin"
-            android:layout_marginRight="@dimen/activity_vertical_margin"
-            android:layout_height="fill_parent"
-            android:hint="@string/send"
-            />
-    </LinearLayout>
 
 </LinearLayout>

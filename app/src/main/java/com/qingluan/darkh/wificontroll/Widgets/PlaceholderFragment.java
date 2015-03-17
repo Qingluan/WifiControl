@@ -23,6 +23,7 @@ import android.widget.Toast;
 import com.qingluan.darkh.wificontroll.Config.DATA;
 import com.qingluan.darkh.wificontroll.Config.arguments;
 import com.qingluan.darkh.wificontroll.IO.AsySocket;
+import com.qingluan.darkh.wificontroll.IO.Command;
 import com.qingluan.darkh.wificontroll.IO.Talking;
 import com.qingluan.darkh.wificontroll.MainActivity;
 import com.qingluan.darkh.wificontroll.R;
@@ -55,12 +56,14 @@ public class PlaceholderFragment  extends Fragment{
     EditText et_test_command;
     // - - - - - fragment_screen_setting - - - - - - - - - //
     Button bt_send_info;
+    Button bt_send_info_scale;
     Button bt_set_resolution;
     Button bt_options_select;
     EditText et_horizontal_point;
     EditText et_horizontal_position;
     EditText et_vertical_point;
     EditText et_vertical_position;
+
 
     // - - - - -  fragment_switch_signal - - - - - - - - - -//
     Button bt_choose_resolution;
@@ -156,7 +159,15 @@ public class PlaceholderFragment  extends Fragment{
 
         switch ( fragment_layout_id){
             case  R.layout.fragment_screen_setting :
+                et_horizontal_point  = (EditText) rootView.findViewById(R.id.edit_horizontal_point);
+                et_horizontal_position = (EditText)rootView.findViewById(R.id.edit_horizontal_position);
+                et_vertical_point = (EditText) rootView.findViewById(R.id.edit_vertical_point);
+                et_vertical_position = (EditText) rootView.findViewById(R.id.edit_vertical_position);
+
+
+
                 bt_send_info = (Button)rootView.findViewById(R.id.bt_send_info);
+                bt_send_info_scale = (Button)rootView.findViewById(R.id.bt_send_info_point);
                 bt_set_resolution = (Button)rootView.findViewById(R.id.bt_choose_resolution);
                 bt_set_resolution.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -183,6 +194,32 @@ public class PlaceholderFragment  extends Fragment{
 
                     }
                 });
+                bt_send_info_scale.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        int vertical_point = Integer.valueOf(et_vertical_point.getText().toString() );
+                        int horizontal_point = Integer.valueOf(et_horizontal_point.getText().toString() );
+                        Command command = new Command();
+                        Byte[] b_data = command.ScaleOrPosition(Command.SCALE,vertical_point,horizontal_point);
+
+                        byte[] bb_DATA = Command.toPrimitives(b_data);
+
+                        /*
+                            send data to server
+                         */
+                        Talking.sendInfo(context,bb_DATA,new AsySocket.AsyReadListener(){
+
+                            @Override
+                            public void onRead(String data) {
+                                Toast.makeText(context,data,Toast.LENGTH_SHORT).show();
+                            }
+
+                        });
+                        Log.d("change ","send to server");
+
+                    }
+                });
+
                 bt_send_info.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -190,16 +227,21 @@ public class PlaceholderFragment  extends Fragment{
                         /*
                         //get byte[] just like this .
                         */
-                        byte[] data = DATA.getSettings(DATA.RESOLUTION);
+                        int vertical_position =  Integer.valueOf(et_vertical_position.getText().toString() );
+                        int horizontal_position = Integer.valueOf(et_horizontal_position.getText().toString() );
 
+                        Command command = new Command();
+                        Byte[] b_data = command.ScaleOrPosition(Command.POSITON,vertical_position,horizontal_position);
+                        Log.d("Position ","Position");
+                        byte[] bb_DATA = Command.toPrimitives(b_data);
                         /*
                             send data to server
                          */
-                        Talking.sendInfo(context,data,new AsySocket.AsyReadListener(){
+                        Talking.sendInfo(context,bb_DATA,new AsySocket.AsyReadListener(){
 
                             @Override
                             public void onRead(String data) {
-
+                                Toast.makeText(context,data,Toast.LENGTH_SHORT).show();
                             }
 
                         });

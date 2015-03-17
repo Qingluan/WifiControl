@@ -36,5 +36,7 @@
     <string name="testIp">IP:</string>
     <string name="bt_test_ip">Ping</string>
     <string name="test_command">测试指令</string>
+    <string name="send_scale">发送大小</string>
+    <string name="send_position">发送位置</string>
 
 </resources>
