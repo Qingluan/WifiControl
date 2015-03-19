@@ -67,7 +67,8 @@ public class PlaceholderFragment  extends Fragment{
 
     // - - - - -  fragment_switch_signal - - - - - - - - - -//
     Button bt_choose_resolution;
-
+    Button bt_choose_screen_options;
+    Button bt_choose_type_device;
     // - - - - - - fragment_function_setting - - - - - - - - - //
     RadioGroup Selects;
     /*
@@ -254,11 +255,11 @@ public class PlaceholderFragment  extends Fragment{
                 break;
             case R.layout.fragment_signal_switch:
                 ListView lv_switch_signal = (ListView)rootView.findViewById(R.id.lv_singal_switch);
-                SingalSwitchListViewAdapter adapter = new SingalSwitchListViewAdapter(context);
-                lv_switch_signal.setAdapter(adapter);
-
-                bt_choose_resolution = (Button ) rootView.findViewById(R.id.bt_choose_resolution);
-                bt_choose_resolution.setOnClickListener(new View.OnClickListener() {
+                final SingalSwitchListViewAdapter adapter_signal = new SingalSwitchListViewAdapter(context);
+                lv_switch_signal.setAdapter(adapter_signal);
+                bt_choose_type_device = (Button)rootView.findViewById(R.id.bt_choose_type_device);
+//                bt_choose_resolution = (Button ) rootView.findViewById(R.id.bt_choose_resolution);
+                bt_choose_type_device.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         LinearLayout linearLayout  ;
@@ -269,11 +270,13 @@ public class PlaceholderFragment  extends Fragment{
 
                         ListView lv = (ListView) linearLayout.findViewById(R.id.lv_resolution);
 
-                        ResolutionOptionsListAdapter adapter = new ResolutionOptionsListAdapter(context);
+//                        ResolutionOptionsListAdapter adapter = new ResolutionOptionsListAdapter(context);
+                        final ChooseTypeDeviceListAdapter adapter = new ChooseTypeDeviceListAdapter(context);
                         lv.setAdapter(adapter);
-                        adapter.setOnAlertListViewClickListener(new ResolutionOptionsListAdapter.onAlertListViewClickListener() {
+                        adapter.setOnAlertListViewClickListener(new ChooseTypeDeviceListAdapter.onAlertListViewClickListener() {
                             @Override
-                            public void afterClick() {
+                            public void afterClick(String [] removedItmes) {
+                                adapter.hideItems(adapter_signal,removedItmes);
                                 dialog.dismiss();
                             }
                         });
@@ -282,6 +285,8 @@ public class PlaceholderFragment  extends Fragment{
 
                     }
                 });
+
+
 
                 break;
 

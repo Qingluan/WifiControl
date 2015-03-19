@@ -9,16 +9,16 @@
         android:orientation="horizontal"
         android:layout_margin="@dimen/activity_vertical_margin"
         >
-        <TextView
+        <Button
+            android:id="@+id/bt_choose_type_device"
             android:layout_width="0dp"
-            android:layout_weight="4"
-            android:textAlignment="center"
-            android:text="@string/Resolution"
+            android:text="@string/choose_type_device"
+            android:layout_weight="5"
             android:layout_height="fill_parent" />
         <Button
-            android:id="@+id/bt_choose_resolution"
+            android:id="@+id/bt_choose_screen_options"
             android:layout_width="0dp"
-            android:text="@string/resoution_default"
+            android:text="@string/choose_screen_options"
             android:layout_weight="5"
             android:layout_height="fill_parent" />
     </LinearLayout>

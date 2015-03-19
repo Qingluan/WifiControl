@@ -39,5 +39,6 @@
     <string name="send_scale">发送大小</string>
     <string name="send_position">发送位置</string>
     <string name="choose_screen_options">选择画面</string>
+    <string name="choose_type_device">选择型号</string>
 
 </resources>

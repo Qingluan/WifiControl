@@ -53,11 +53,11 @@ public class DATA {
     public static final String USB2 = "USB2";
     public static final String CVBS4 = "CVBS4";
 
-    public static final byte[] B_CVBS4 = {(byte)0xaa,(byte) 0x00 ,(byte)0x03 , (byte)0x01 ,(byte)0x0C ,(byte)0x00,(byte)0x00 ,(byte)0x00 ,(byte)0x03 ,(byte)0x0D  };
-    public static final byte[] B_USB1 = {(byte)0xaa,(byte) 0x00 ,(byte)0x03 , (byte)0x01 ,(byte)0x0D ,(byte)0x00,(byte)0x00 ,(byte)0x00 ,(byte)0x03 ,(byte)0x0D  };
-    public static final byte[] B_USB2 = {(byte)0xaa,(byte) 0x00 ,(byte)0x03 , (byte)0x01 ,(byte)0x0E ,(byte)0x00,(byte)0x00 ,(byte)0x00 ,(byte)0x03 ,(byte)0x0D  };
-    public static final byte[] B_VPBPR = {(byte)0xaa,(byte) 0x00 ,(byte)0x03 , (byte)0x01 ,(byte)0x04 ,(byte)0x00,(byte)0x00 ,(byte)0x00 ,(byte)0x03 ,(byte)0x0D  };
-    public static final byte[] B_TEST = {(byte)0xaa,(byte) 0x00 ,(byte)0x03 , (byte)0x01 ,(byte)0x01 ,(byte)0x00,(byte)0x00 ,(byte)0x00 ,(byte)0x03 ,(byte)0x0D  };
+    public static final byte[] B_CVBS4 = { (byte)0xaa,(byte) 0x00 ,(byte)0x03 , (byte)0x01 ,(byte)0x0C ,(byte)0x00,(byte)0x00 ,(byte)0x00 ,(byte)0x03 ,(byte)0x0D  };
+    public static final byte[] B_USB1 = { (byte)0xaa,(byte) 0x00 ,(byte)0x03 , (byte)0x01 ,(byte)0x0D ,(byte)0x00,(byte)0x00 ,(byte)0x00 ,(byte)0x03 ,(byte)0x0D  };
+    public static final byte[] B_USB2 = { (byte)0xaa,(byte) 0x00 ,(byte)0x03 , (byte)0x01 ,(byte)0x0E ,(byte)0x00,(byte)0x00 ,(byte)0x00 ,(byte)0x03 ,(byte)0x0D  };
+    public static final byte[] B_VPBPR = { (byte)0xaa,(byte) 0x00 ,(byte)0x03 , (byte)0x01 ,(byte)0x04 ,(byte)0x00,(byte)0x00 ,(byte)0x00 ,(byte)0x03 ,(byte)0x0D  };
+    public static final byte[] B_TEST = { (byte)0xaa,(byte) 0x00 ,(byte)0x03 , (byte)0x01 ,(byte)0x01 ,(byte)0x00,(byte)0x00 ,(byte)0x00 ,(byte)0x03 ,(byte)0x0D };
     public static final byte[] B_AV1 = { (byte)0xAA,(byte)0x00,(byte)0x03,(byte)0x01,(byte)0x01,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x03,(byte)0x0D };
     public static final byte[] B_AV2 = { (byte)0xAA,(byte)0x00,(byte)0x03,(byte)0x01,(byte)0x02,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x0D };
     public static final byte[] B_AV3 = { (byte)0xAA,(byte)0x00,(byte)0x03,(byte)0x01,(byte)0x03,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x01,(byte)0x0D };
@@ -160,6 +160,18 @@ public class DATA {
     public static String[]  XP720 = new String[]{ AV3,VPBPR,HDMI1,HDMI2,VPBPR};
     public static String[]  XP723 = new String[]{ AV3,VGA2,VPBPR,DVI2,HDMI2,VPBPR};
     public static String[]  XP726 = new String[]{ AV3,HDMI2,VPBPR,USB1,USB2,CVBS4};
+
+    public static String  N_XP320 = "XP320";
+    public static String  N_XP330 = "XP330";
+    public static String  N_XP350 = "XP350";
+    public static String  N_XP360 = "XP360";
+    public static String  N_XP380 = "XP380";
+    public static String  N_XP520 = "XP520";
+    public static String  N_XP530 = "XP530";
+    public static String  N_XP550 = "XP550";
+    public static String  N_XP720 = "XP720";
+    public static String  N_XP723 = "XP723";
+    public static String  N_XP726 = "XP726";
 
     public static byte[] getSettings(String key){
         return DATA.settings.get(key);

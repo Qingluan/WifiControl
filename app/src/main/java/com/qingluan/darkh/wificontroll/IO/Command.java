@@ -62,6 +62,8 @@ public class Command {
         this.command.add(h_vertical_length);
         this.command.add((byte)0);
 
+        Byte[] cmd = this.command.toArray(new Byte[]{});
+        return  Command.toPrimitives(cmd);
 
     }
 

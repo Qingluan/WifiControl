@@ -40,6 +40,10 @@ public class SingalSwitchListViewAdapter extends BaseAdapter {
         data.put(DATA.DVI2,DATA.B_DVI2);
         data.put(DATA.HDMI1,DATA.B_HDMI1);
         data.put(DATA.HDMI2,DATA.B_HDMI2);
+        data.put(DATA.CVBS4,DATA.B_CVBS4);
+        data.put(DATA.VPBPR,DATA.B_VPBPR);
+        data.put(DATA.USB1,DATA.B_USB1);
+        data.put(DATA.USB2,DATA.B_USB2);
         keys = data.keySet().toArray(new String[] {});
     }
 
@@ -53,9 +57,17 @@ public class SingalSwitchListViewAdapter extends BaseAdapter {
         data.put(DATA.DVI2,DATA.B_DVI2);
         data.put(DATA.HDMI1,DATA.B_HDMI1);
         data.put(DATA.HDMI2,DATA.B_HDMI2);
+        data.put(DATA.CVBS4,DATA.B_CVBS4);
+        data.put(DATA.VPBPR,DATA.B_VPBPR);
+        data.put(DATA.USB1,DATA.B_USB1);
+        data.put(DATA.USB2,DATA.B_USB2);
     }
 
     public void hideItems(String[] keys){
+        if (keys == null){
+            Log.d("Tag 8 88 8 8 8 8 ","no keys pass ");
+            return;
+        }
         for (String key : keys){
             data.remove(key);
         }
@@ -87,8 +99,10 @@ public class SingalSwitchListViewAdapter extends BaseAdapter {
         bt_switch_signal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                byte[] data = DATA.getSettings(((TextView) v).getText().toString());
-                Talking.sendInfo(external_context, data, new AsySocket.AsyReadListener() {
+                resetDisplayItem();
+                byte[] B_data = data.get(((TextView) v).getText().toString());
+                Log.d("Tag - - - - -",String.valueOf(data));
+                Talking.sendInfo(external_context, B_data, new AsySocket.AsyReadListener() {
                     @Override
                     public void onRead(String data) {
                         Toast.makeText(external_context, data, Toast.LENGTH_SHORT).show();
