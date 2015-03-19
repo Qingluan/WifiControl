@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
 import android.text.Layout;
+import android.text.TextPaint;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,7 @@ import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RadioGroup;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -75,6 +77,9 @@ public class PlaceholderFragment  extends Fragment{
     Button bt_choose_type_device;
     // - - - - - - fragment_function_setting - - - - - - - - - //
     RadioGroup Selects;
+    SeekBar sb_setting_contrast;
+    SeekBar sb_setting_light;
+    SeekBar sb_setting_saturation;
     /*
         - - - - - - END - - - - - - -
      */
@@ -417,6 +422,88 @@ public class PlaceholderFragment  extends Fragment{
                 });
 
 
+                break;
+            case R.layout.fragment_function_setting:
+                sb_setting_contrast = (SeekBar)rootView.findViewById(R.id.SB_contrast);
+                sb_setting_light = (SeekBar)rootView.findViewById(R.id.SB_light);
+                sb_setting_saturation = (SeekBar) rootView.findViewById(R.id.SB_saturation);
+                sb_setting_contrast.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                    @Override
+                    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                        Command cmd = new Command();
+                        Log.d("contrast :",String.valueOf(progress));
+                        byte [] data = cmd.ColorSetting(DATA.COM_TYPE,progress);
+                        Talking.sendInfo(context,data, new AsySocket.AsyReadListener(){
+
+                            @Override
+                            public void onRead(String data) {
+                                Toast.makeText(context,data,Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onStartTrackingTouch(SeekBar seekBar) {
+
+                    }
+
+                    @Override
+                    public void onStopTrackingTouch(SeekBar seekBar) {
+
+                    }
+                });
+
+                sb_setting_saturation.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                    @Override
+                    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                        Log.d("saturation :",String.valueOf(progress));
+                        Command cmd = new Command();
+                        byte [] data = cmd.ColorSetting(DATA.SATURATION_TYPE,progress);
+                        Talking.sendInfo(context,data, new AsySocket.AsyReadListener(){
+
+                            @Override
+                            public void onRead(String data) {
+                                Toast.makeText(context,data,Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onStartTrackingTouch(SeekBar seekBar) {
+
+                    }
+
+                    @Override
+                    public void onStopTrackingTouch(SeekBar seekBar) {
+
+                    }
+                });
+
+                sb_setting_light.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                    @Override
+                    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                        Command cmd = new Command();
+                        Log.d("light :",String.valueOf(progress));
+                        byte [] data = cmd.ColorSetting(DATA.LIGHT_TYPE,progress);
+                        Talking.sendInfo(context,data, new AsySocket.AsyReadListener(){
+
+                            @Override
+                            public void onRead(String data) {
+                                Toast.makeText(context,data,Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onStartTrackingTouch(SeekBar seekBar) {
+
+                    }
+
+                    @Override
+                    public void onStopTrackingTouch(SeekBar seekBar) {
+
+                    }
+                });
                 break;
 
         }

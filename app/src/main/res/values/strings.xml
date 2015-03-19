@@ -42,5 +42,6 @@
     <string name="choose_type_device">选择型号</string>
     <string name="choose_screen_options_one">屏幕参数</string>
     <string name="resoution_setting">分辨率设定</string>
+    <string name="cntrast_setting">对比度</string>
 
 </resources>
