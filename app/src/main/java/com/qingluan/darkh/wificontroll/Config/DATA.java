@@ -34,6 +34,10 @@ public class DATA {
     public static final String N_SCREEN_TWO = "缩放画面 （2）";
     public static final String N_SCREEN_DEFAULT = "屏幕参数";
 
+    public static final int LIGHT_TYPE = 1;
+    public static final int COM_TYPE = 2;
+    public static final int SATURATION_TYPE = 1;
+
     public static final int SCREEN_ONE = 1 ;
     public static final int SCREEN_TWO = 2 ;
     public static final int SCREEN_DEFAULT = 0 ;

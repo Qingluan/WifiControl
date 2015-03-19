@@ -70,6 +70,24 @@ public class Command {
 
     }
 
+    public  byte[] ColorSetting(int ColorSettingType,int progress) {
+
+        this.command.add((byte)ColorSettingType);
+        this.command.add((byte)progress);
+        this.command.add((byte)0);
+        this.command.add((byte)0);
+        this.command.add((byte)0);
+        this.command.add((byte)0);
+        this.command.add((byte)0);
+        this.command.add((byte)0x0d);
+
+        Byte[] cmd = this.command.toArray(new Byte[]{});
+        byte odd = getCheck(cmd);
+        cmd[8] = odd;
+        return  Command.toPrimitives(cmd);
+
+    }
+
     public  byte[] ScaleOrPosition(int screen_number,int TYPE,int vertical_length,int horizontal_length){
         Byte[] command = this.VerticalHorizontal(vertical_length, horizontal_length);
         command[3] = (byte) TYPE;
