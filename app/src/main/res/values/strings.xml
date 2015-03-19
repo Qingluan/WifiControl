@@ -38,5 +38,6 @@
     <string name="test_command">测试指令</string>
     <string name="send_scale">发送大小</string>
     <string name="send_position">发送位置</string>
+    <string name="choose_screen_options">选择画面</string>
 
 </resources>

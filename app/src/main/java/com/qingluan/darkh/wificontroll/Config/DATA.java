@@ -48,7 +48,15 @@ public class DATA {
     public static final String DVI2 = "DVI2" ;
     public static final String HDMI1 = "HDMI1" ;
     public static final String HDMI2 = "HDMI2" ;
+    public static final String VPBPR = "YPBPR";
+    public static final String USB1 = "USB1";
+    public static final String USB2 = "USB2";
+    public static final String CVBS4 = "CVBS4";
 
+    public static final byte[] B_CVBS4 = {(byte)0xaa,(byte) 0x00 ,(byte)0x03 , (byte)0x01 ,(byte)0x0C ,(byte)0x00,(byte)0x00 ,(byte)0x00 ,(byte)0x03 ,(byte)0x0D  };
+    public static final byte[] B_USB1 = {(byte)0xaa,(byte) 0x00 ,(byte)0x03 , (byte)0x01 ,(byte)0x0D ,(byte)0x00,(byte)0x00 ,(byte)0x00 ,(byte)0x03 ,(byte)0x0D  };
+    public static final byte[] B_USB2 = {(byte)0xaa,(byte) 0x00 ,(byte)0x03 , (byte)0x01 ,(byte)0x0E ,(byte)0x00,(byte)0x00 ,(byte)0x00 ,(byte)0x03 ,(byte)0x0D  };
+    public static final byte[] B_VPBPR = {(byte)0xaa,(byte) 0x00 ,(byte)0x03 , (byte)0x01 ,(byte)0x04 ,(byte)0x00,(byte)0x00 ,(byte)0x00 ,(byte)0x03 ,(byte)0x0D  };
     public static final byte[] B_TEST = {(byte)0xaa,(byte) 0x00 ,(byte)0x03 , (byte)0x01 ,(byte)0x01 ,(byte)0x00,(byte)0x00 ,(byte)0x00 ,(byte)0x03 ,(byte)0x0D  };
     public static final byte[] B_AV1 = { (byte)0xAA,(byte)0x00,(byte)0x03,(byte)0x01,(byte)0x01,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x03,(byte)0x0D };
     public static final byte[] B_AV2 = { (byte)0xAA,(byte)0x00,(byte)0x03,(byte)0x01,(byte)0x02,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x0D };
@@ -140,6 +148,18 @@ public class DATA {
         DATA.settings.put(HDMI1,B_HDMI1);
         DATA.settings.put(HDMI2,B_HDMI2);
     }
+
+    public static String[]  XP320 = new String[]{ VGA2,DVI2,HDMI2,USB1,USB2,CVBS4};
+    public static String[]  XP330 = new String[]{ VPBPR,USB1,USB2,CVBS4};
+    public static String[]  XP350 = new String[]{ VGA2,DVI2,USB1,USB2,CVBS4};
+    public static String[]  XP360 = new String[]{ VGA2,DVI2,USB1,USB2,CVBS4};
+    public static String[]  XP380 = new String[]{ VGA2,VPBPR,HDMI2,CVBS4};
+    public static String[]  XP520 = new String[]{ AV3,VGA2,DVI2,VPBPR,USB1,USB2,HDMI2,CVBS4};
+    public static String[]  XP530 = new String[]{ VPBPR,USB1,USB2};
+    public static String[]  XP550 = new String[]{ VPBPR,AV3,VGA2,DVI2,USB1,USB2,HDMI2,CVBS4};
+    public static String[]  XP720 = new String[]{ AV3,VPBPR,HDMI1,HDMI2,VPBPR};
+    public static String[]  XP723 = new String[]{ AV3,VGA2,VPBPR,DVI2,HDMI2,VPBPR};
+    public static String[]  XP726 = new String[]{ AV3,HDMI2,VPBPR,USB1,USB2,CVBS4};
 
     public static byte[] getSettings(String key){
         return DATA.settings.get(key);

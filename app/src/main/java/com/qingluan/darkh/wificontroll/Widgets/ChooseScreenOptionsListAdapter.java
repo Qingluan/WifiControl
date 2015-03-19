@@ -1,13 +1,10 @@
 package com.qingluan.darkh.wificontroll.Widgets;
 
 import android.content.Context;
-import android.nfc.Tag;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,46 +17,36 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by darkh on 3/15/15.
+ * Created by darkh on 3/19/15.
  */
-public class SingalSwitchListViewAdapter extends BaseAdapter {
+public class ChooseScreenOptionsListAdapter extends BaseAdapter {
+
     Map<String,byte[]> data = new HashMap<String, byte[]>();
     Context external_context;
-    Button bt_switch_signal;
+    TextView tv_item_resolution;
 
     String [] keys;
+    onAlertListViewClickListener listener ;
 
-    public SingalSwitchListViewAdapter(Context context ){
+    public ChooseScreenOptionsListAdapter (Context context) {
         external_context = context;
-        data.put(DATA.AV1,DATA.B_AV1);
-        data.put(DATA.AV2,DATA.B_AV2);
-        data.put(DATA.AV3,DATA.B_AV3);
-        data.put(DATA.VGA1,DATA.B_VGA1);
-        data.put(DATA.VGA2,DATA.B_VGA2);
-        data.put(DATA.DVI1,DATA.B_DVI1);
-        data.put(DATA.DVI2,DATA.B_DVI2);
-        data.put(DATA.HDMI1,DATA.B_HDMI1);
-        data.put(DATA.HDMI2,DATA.B_HDMI2);
-        keys = data.keySet().toArray(new String[] {});
+        data.put(DATA.K640_480, DATA.B_640_480);
+        data.put(DATA.K800_600, DATA.B_800_600);
+        data.put(DATA.K1024_768, DATA.B_1024_768);
+        data.put(DATA.K1280_1024, DATA.B_1280_1024);
+        data.put(DATA.K1366_768, DATA.B_1366_768);
+        data.put(DATA.K1440_900, DATA.B_1440_900);
+        data.put(DATA.K1600_1200, DATA.B_1600_1200);
+        data.put(DATA.K1680_1050, DATA.B_1680_1050);
+        data.put(DATA.K1920_1080, DATA.B_1920_1080);
+        data.put(DATA.K1600_900, DATA.B_1600_900);
+
+
+        keys = data.keySet().toArray(new String[]{});
     }
 
-    public void resetDisplayItem(){
-        data.put(DATA.AV1,DATA.B_AV1);
-        data.put(DATA.AV2,DATA.B_AV2);
-        data.put(DATA.AV3,DATA.B_AV3);
-        data.put(DATA.VGA1,DATA.B_VGA1);
-        data.put(DATA.VGA2,DATA.B_VGA2);
-        data.put(DATA.DVI1,DATA.B_DVI1);
-        data.put(DATA.DVI2,DATA.B_DVI2);
-        data.put(DATA.HDMI1,DATA.B_HDMI1);
-        data.put(DATA.HDMI2,DATA.B_HDMI2);
-    }
-
-    public void hideItems(String[] keys){
-        for (String key : keys){
-            data.remove(key);
-        }
-        this.notifyDataSetChanged();
+    public void setOnAlertListViewClickListener(onAlertListViewClickListener onAlertListViewClickListener){
+        this.listener = onAlertListViewClickListener;
     }
 
     @Override
@@ -80,11 +67,10 @@ public class SingalSwitchListViewAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater =(LayoutInflater) external_context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        convertView = inflater.inflate(R.layout.item_listview_singal_switch,null);
-        bt_switch_signal = (Button) convertView.findViewById(R.id.bt_switch_singal);
-        Log.d("Singal ", keys[position]);
-        bt_switch_signal.setText(keys[position]);
-        bt_switch_signal.setOnClickListener(new View.OnClickListener() {
+        convertView = inflater.inflate(R.layout.item_listview_textview,null);
+        tv_item_resolution = (TextView) convertView.findViewById(R.id.item_tv_resolution);
+        tv_item_resolution.setText(keys[position]);
+        tv_item_resolution.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 byte[] data = DATA.getSettings(((TextView) v).getText().toString());
@@ -94,6 +80,9 @@ public class SingalSwitchListViewAdapter extends BaseAdapter {
                         Toast.makeText(external_context, data, Toast.LENGTH_SHORT).show();
                     }
                 });
+                if (listener != null){
+                    listener.afterClick();
+                }
 
 
             }
@@ -101,4 +90,7 @@ public class SingalSwitchListViewAdapter extends BaseAdapter {
         return convertView;
     }
 
+    public interface onAlertListViewClickListener{
+        public void afterClick();
+    }
 }

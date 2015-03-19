@@ -49,6 +49,22 @@ public class Command {
         return  result;
     }
 
+    public byte[] ScreenScale(int vertical_length,int horizontal_length){
+        this.command.add((byte)0x07);
+        this.command.add((byte)2 );
+        byte l_vertical_length = (byte) (vertical_length & 0x00ff);
+        byte h_vertical_length = (byte) ( (vertical_length & 0xff00) >> 8 );
+        byte l_horizontal_length = (byte) (horizontal_length & 0x00ff);
+        byte h_horizontal_length = (byte) ( (horizontal_length & 0xff00) >> 8 );
+        this.command.add(l_horizontal_length);
+        this.command.add(h_horizontal_length);
+        this.command.add(l_vertical_length);
+        this.command.add(h_vertical_length);
+        this.command.add((byte)0);
+
+
+    }
+
     public  Byte[] ScaleOrPosition(int TYPE,int vertical_length,int horizontal_length){
         Byte[] command = this.VerticalHorizontal(vertical_length, horizontal_length);
         command[3] = (byte) TYPE;
