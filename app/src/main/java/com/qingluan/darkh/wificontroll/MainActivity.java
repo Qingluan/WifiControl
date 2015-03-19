@@ -1,6 +1,7 @@
 package com.qingluan.darkh.wificontroll;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;

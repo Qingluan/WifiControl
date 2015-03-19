@@ -14,6 +14,8 @@ public class arguments {
     public static final byte[] TEST_BYTES = {0x00, 0x01, 0x02 , 0x03, 0xf };
 
     public static final int NETWORK_PORT = 8080;
-    public static final String HOST = "192.168.59.3";
+//    public static final String HOST = "192.168.59.3";
+//    public static final String HOST = "222.28.142.214";
+    public static final String HOST = "192.168.4.1";
     public static final String BROADCAST_RECV_FROM_SOCKET = "com.qingluan.darkh.recv_from_socket";
 }

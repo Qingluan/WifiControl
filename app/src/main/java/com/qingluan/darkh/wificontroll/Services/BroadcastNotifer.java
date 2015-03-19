@@ -9,6 +9,7 @@ import android.util.ArrayMap;
 
 import com.qingluan.darkh.wificontroll.MainActivity;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -18,7 +19,7 @@ public class BroadcastNotifer {
     private  String tag = BroadcastNotifer.class.getName();
     private  Context locateContext ;
 
-    public static  Map<String,BroadReciver> broadReciverMap = new ArrayMap<String, BroadReciver>();
+    public static  Map<String,BroadReciver> broadReciverMap = new HashMap<String, BroadReciver>();
 
     public BroadcastNotifer(Context context){
         this.locateContext = context;

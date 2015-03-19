@@ -31,6 +31,7 @@ import com.qingluan.darkh.wificontroll.Config.arguments;
 import com.qingluan.darkh.wificontroll.IO.AsySocket;
 import com.qingluan.darkh.wificontroll.IO.Command;
 import com.qingluan.darkh.wificontroll.IO.Talking;
+import com.qingluan.darkh.wificontroll.IO.ToastShow;
 import com.qingluan.darkh.wificontroll.MainActivity;
 import com.qingluan.darkh.wificontroll.R;
 
@@ -48,6 +49,7 @@ public class PlaceholderFragment  extends Fragment{
     private View rootView;
     private  int fragment_layout_id;
     public static int visual_number = 1;
+    ToastShow toast;
 
     private static int ScreenStatus = DATA.SCREEN_DEFAULT;
 
@@ -95,6 +97,8 @@ public class PlaceholderFragment  extends Fragment{
         PlaceholderFragment fragment = new PlaceholderFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+
+
 
         fragment.setViewPager(viewPager);
         fragment.setContext(context);
@@ -152,6 +156,7 @@ public class PlaceholderFragment  extends Fragment{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        toast = new ToastShow(context);
         //get page number
         int pageNumber = getArguments().getInt(ARG_SECTION_NUMBER);
         if (pageNumber == 0){
@@ -554,13 +559,14 @@ public class PlaceholderFragment  extends Fragment{
                     @Override
                     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                         Command cmd = new Command();
+                        toast .show(String.valueOf(progress));
                         Log.d("contrast :",String.valueOf(progress));
                         byte [] data = cmd.ColorSetting(DATA.COM_TYPE,progress);
                         Talking.sendInfo(context,data, new AsySocket.AsyReadListener(){
 
                             @Override
                             public void onRead(String data) {
-                                Toast.makeText(context,data,Toast.LENGTH_SHORT).show();
+
                             }
                         });
                     }
@@ -578,7 +584,7 @@ public class PlaceholderFragment  extends Fragment{
 
                 sb_setting_saturation.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                     @Override
-                    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                    public void onProgressChanged(SeekBar seekBar, final int progress, boolean fromUser) {
                         Log.d("saturation :",String.valueOf(progress));
                         Command cmd = new Command();
                         byte [] data = cmd.ColorSetting(DATA.SATURATION_TYPE,progress);
@@ -586,7 +592,7 @@ public class PlaceholderFragment  extends Fragment{
 
                             @Override
                             public void onRead(String data) {
-                                Toast.makeText(context,data,Toast.LENGTH_SHORT).show();
+                                toast .show(String.valueOf(progress));
                             }
                         });
                     }
@@ -606,13 +612,15 @@ public class PlaceholderFragment  extends Fragment{
                     @Override
                     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                         Command cmd = new Command();
+                        toast .show(String.valueOf(progress));
                         Log.d("light :",String.valueOf(progress));
                         byte [] data = cmd.ColorSetting(DATA.LIGHT_TYPE,progress);
+
                         Talking.sendInfo(context,data, new AsySocket.AsyReadListener(){
 
                             @Override
                             public void onRead(String data) {
-                                Toast.makeText(context,data,Toast.LENGTH_SHORT).show();
+
                             }
                         });
                     }

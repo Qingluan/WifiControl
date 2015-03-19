@@ -1,6 +1,7 @@
 package com.qingluan.darkh.wificontroll.IO;
 
 import android.content.Context;
+import android.widget.Toast;
 
 import com.qingluan.darkh.wificontroll.Config.arguments;
 
@@ -17,6 +18,11 @@ public class Talking {
         asySocket.AsySend(data);
 
         asySocket.setAsyReadListener(asyReadListener);
+    }
+
+
+    public class ToastShow {
+
     }
 
 
