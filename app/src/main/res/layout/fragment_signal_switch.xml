@@ -18,7 +18,7 @@
         <Button
             android:id="@+id/bt_choose_screen_options"
             android:layout_width="0dp"
-            android:text="@string/choose_screen_options"
+            android:text="@string/choose_screen"
             android:layout_weight="5"
             android:layout_height="fill_parent" />
     </LinearLayout>

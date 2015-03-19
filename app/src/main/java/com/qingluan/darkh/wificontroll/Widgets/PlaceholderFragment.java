@@ -8,6 +8,7 @@ import android.net.wifi.WifiConfiguration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.ExploreByTouchHelper;
 import android.text.Layout;
 import android.text.TextPaint;
 import android.util.Log;
@@ -19,6 +20,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -45,6 +47,7 @@ public class PlaceholderFragment  extends Fragment{
     ViewPager viewPager;
     private View rootView;
     private  int fragment_layout_id;
+    public static int visual_number = 1;
 
     private static int ScreenStatus = DATA.SCREEN_DEFAULT;
 
@@ -76,10 +79,12 @@ public class PlaceholderFragment  extends Fragment{
     Button bt_choose_screen_options;
     Button bt_choose_type_device;
     // - - - - - - fragment_function_setting - - - - - - - - - //
-    RadioGroup Selects;
+    RadioGroup rg_Selects;
     SeekBar sb_setting_contrast;
     SeekBar sb_setting_light;
     SeekBar sb_setting_saturation;
+    Button bt_choose_signal ;
+    Button bt_froze;
     /*
         - - - - - - END - - - - - - -
      */
@@ -356,11 +361,36 @@ public class PlaceholderFragment  extends Fragment{
 
                 break;
             case R.layout.fragment_signal_switch:
+
+                bt_choose_screen_options = (Button)rootView.findViewById(R.id.bt_choose_screen_options);
                 ListView lv_switch_signal = (ListView)rootView.findViewById(R.id.lv_singal_switch);
                 final SingalSwitchListViewAdapter adapter_signal = new SingalSwitchListViewAdapter(context);
                 lv_switch_signal.setAdapter(adapter_signal);
                 bt_choose_type_device = (Button)rootView.findViewById(R.id.bt_choose_type_device);
 //                bt_choose_resolution = (Button ) rootView.findViewById(R.id.bt_choose_resolution);
+               bt_choose_screen_options.setOnClickListener(new View.OnClickListener() {
+                   @Override
+                   public void onClick(View v) {
+                       LinearLayout linearLayout  ;
+                       LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                       linearLayout = (LinearLayout) inflater.inflate(R.layout.item_resoltion_setting_list,null);
+
+                       final AlertDialog dialog = new AlertDialog.Builder(context).setView(linearLayout).setTitle("选择分辨率").show();
+
+                       ListView lv = (ListView) linearLayout.findViewById(R.id.lv_resolution);
+
+//                        ResolutionOptionsListAdapter adapter = new ResolutionOptionsListAdapter(context);
+//                        final ChooseTypeDeviceListAdapter adapter = new ChooseTypeDeviceListAdapter(context);
+                       ChooseSignalScreenListViewAdapter adapter = new ChooseSignalScreenListViewAdapter(context);
+                       lv.setAdapter(adapter);
+                       adapter.setOnAlertListViewClickListener(new ChooseSignalScreenListViewAdapter.onAlertListViewClickListener() {
+                           @Override
+                           public void afterClick(String[] removedItmes) {
+                               dialog.dismiss();
+                           }
+                       });
+                   }
+               });
                 bt_choose_type_device.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -424,6 +454,82 @@ public class PlaceholderFragment  extends Fragment{
 
                 break;
             case R.layout.fragment_function_setting:
+                bt_froze = (Button) rootView.findViewById(R.id.bt_frozen);
+                bt_froze.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        int numbe = PlaceholderFragment.visual_number;
+                        Command cmd = new Command();
+                        byte [] data = cmd.FrozeScreen(numbe);
+                        Talking.sendInfo(context,data,new AsySocket.AsyReadListener() {
+                            @Override
+                            public void onRead(String data) {
+                                Toast.makeText(context,data,Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                });
+
+
+                bt_choose_signal = (Button)rootView.findViewById(R.id.bt_choose_screen);
+                bt_choose_signal.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        LinearLayout linearLayout  ;
+                        LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                        linearLayout = (LinearLayout) inflater.inflate(R.layout.item_resoltion_setting_list,null);
+
+                        final AlertDialog dialog = new AlertDialog.Builder(context).setView(linearLayout).setTitle("选择分辨率").show();
+
+                        ListView lv = (ListView) linearLayout.findViewById(R.id.lv_resolution);
+
+//                        ResolutionOptionsListAdapter adapter = new ResolutionOptionsListAdapter(context);
+//                        final ChooseTypeDeviceListAdapter adapter = new ChooseTypeDeviceListAdapter(context);
+                        ChooseSignalScreenListViewAdapter adapter = new ChooseSignalScreenListViewAdapter(context);
+                        lv.setAdapter(adapter);
+                        adapter.setOnAlertListViewClickListener(new ChooseSignalScreenListViewAdapter.onAlertListViewClickListener() {
+                            @Override
+                            public void afterClick(String[] removedItmes) {
+                                dialog.dismiss();
+                            }
+                        });
+                    }
+                });
+
+
+                rg_Selects = (RadioGroup)rootView.findViewById(R.id.radio_group_screens);
+                RadioButton rb_single_screen = (RadioButton)rootView.findViewById(R.id.radio_singal_animations);
+                RadioButton rb_double_screen = (RadioButton)rootView.findViewById(R.id.radio_double_animations);
+
+                rb_single_screen.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Command cmd = new Command();
+                        byte[] data = cmd.Mul_screen(1);
+                        Talking.sendInfo(context,data,new AsySocket.AsyReadListener() {
+                            @Override
+                            public void onRead(String data) {
+                                Toast.makeText(context,data,Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                });
+
+                rb_double_screen.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Command cmd = new Command();
+                        byte[] data = cmd.Mul_screen(2);
+                        Talking.sendInfo(context,data,new AsySocket.AsyReadListener() {
+                            @Override
+                            public void onRead(String data) {
+                                Toast.makeText(context,data,Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                });
+
                 sb_setting_contrast = (SeekBar)rootView.findViewById(R.id.SB_contrast);
                 sb_setting_light = (SeekBar)rootView.findViewById(R.id.SB_light);
                 sb_setting_saturation = (SeekBar) rootView.findViewById(R.id.SB_saturation);

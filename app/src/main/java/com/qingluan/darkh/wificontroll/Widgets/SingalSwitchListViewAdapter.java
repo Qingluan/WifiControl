@@ -101,6 +101,8 @@ public class SingalSwitchListViewAdapter extends BaseAdapter {
             public void onClick(View v) {
                 resetDisplayItem();
                 byte[] B_data = data.get(((TextView) v).getText().toString());
+                B_data[3] =(byte) PlaceholderFragment.visual_number;
+
                 Log.d("Tag - - - - -",String.valueOf(data));
                 Talking.sendInfo(external_context, B_data, new AsySocket.AsyReadListener() {
                     @Override
