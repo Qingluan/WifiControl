@@ -21,7 +21,7 @@ import java.util.Map;
  */
 public class ChooseScreenOptionsListAdapter extends BaseAdapter {
 
-    Map<String,byte[]> data = new HashMap<String, byte[]>();
+    Map<String,Integer> data = new HashMap<String, Integer>();
     Context external_context;
     TextView tv_item_resolution;
 
@@ -30,16 +30,9 @@ public class ChooseScreenOptionsListAdapter extends BaseAdapter {
 
     public ChooseScreenOptionsListAdapter (Context context) {
         external_context = context;
-        data.put(DATA.K640_480, DATA.B_640_480);
-        data.put(DATA.K800_600, DATA.B_800_600);
-        data.put(DATA.K1024_768, DATA.B_1024_768);
-        data.put(DATA.K1280_1024, DATA.B_1280_1024);
-        data.put(DATA.K1366_768, DATA.B_1366_768);
-        data.put(DATA.K1440_900, DATA.B_1440_900);
-        data.put(DATA.K1600_1200, DATA.B_1600_1200);
-        data.put(DATA.K1680_1050, DATA.B_1680_1050);
-        data.put(DATA.K1920_1080, DATA.B_1920_1080);
-        data.put(DATA.K1600_900, DATA.B_1600_900);
+        data.put(DATA.N_SCREEN_ONE, DATA.SCREEN_ONE);
+        data.put(DATA.N_SCREEN_TWO, DATA.SCREEN_TWO);
+        data.put(DATA.N_SCREEN_DEFAULT,DATA.SCREEN_DEFAULT);
 
 
         keys = data.keySet().toArray(new String[]{});
@@ -55,7 +48,7 @@ public class ChooseScreenOptionsListAdapter extends BaseAdapter {
     }
 
     @Override
-    public byte[] getItem(int position) {
+    public Integer getItem(int position) {
         return data.get(position);
     }
 
@@ -73,15 +66,11 @@ public class ChooseScreenOptionsListAdapter extends BaseAdapter {
         tv_item_resolution.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                byte[] data = DATA.getSettings(((TextView) v).getText().toString());
-                Talking.sendInfo(external_context, data, new AsySocket.AsyReadListener() {
-                    @Override
-                    public void onRead(String data) {
-                        Toast.makeText(external_context, data, Toast.LENGTH_SHORT).show();
-                    }
-                });
+
+                int number = data.get(((TextView)v).getText().toString());
                 if (listener != null){
-                    listener.afterClick();
+                    listener.afterClick(number,((TextView)v).getText().toString());
+
                 }
 
 
@@ -91,6 +80,6 @@ public class ChooseScreenOptionsListAdapter extends BaseAdapter {
     }
 
     public interface onAlertListViewClickListener{
-        public void afterClick();
+        public void afterClick(int key,String name);
     }
 }

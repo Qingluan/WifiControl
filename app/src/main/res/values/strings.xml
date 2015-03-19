@@ -40,5 +40,7 @@
     <string name="send_position">发送位置</string>
     <string name="choose_screen_options">选择画面</string>
     <string name="choose_type_device">选择型号</string>
+    <string name="choose_screen_options_one">屏幕参数</string>
+    <string name="resoution_setting">分辨率设定</string>
 
 </resources>

@@ -86,27 +86,64 @@
             android:textSize="25sp"
             android:text="@string/color_setting"
             android:layout_height="0dp" />
-        <TextView
-            android:id="@+id/tv_lighting"
-            android:layout_width="fill_parent"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_weight="3"
-            android:textAlignment="center"
-            android:text="@string/lighting"
-            android:layout_height="0dp" />
-        <TextView
-            android:id="@+id/tv_contrast"
-            android:layout_width="fill_parent"
+            android:orientation="horizontal"
+            android:layout_height="0dp">
+            <TextView
+                android:id="@+id/tv_lighting"
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:textAlignment="center"
+                android:text="@string/lighting"
+                android:layout_height="match_parent" />
+            <SeekBar
+                android:id="@+id/SB_light"
+                android:layout_width="0dp"
+                android:layout_weight="7"
+                android:layout_height="match_parent" />
+            </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_weight="3"
-            android:textAlignment="center"
-            android:text="@string/contrast"
-            android:layout_height="0dp" />
-        <TextView
-            android:id="@+id/tv_saturation"
-            android:layout_width="fill_parent"
+            android:orientation="horizontal"
+            android:layout_height="0dp">
+            <TextView
+                android:id="@+id/tv_color"
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:textAlignment="center"
+                android:text="@string/color_setting"
+                android:layout_height="match_parent" />
+            <SeekBar
+                android:id="@+id/SB_color"
+                android:layout_width="0dp"
+                android:layout_weight="7"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_weight="3"
-            android:textAlignment="center"
-            android:text="@string/saturation"
-            android:layout_height="0dp" />
+            android:orientation="horizontal"
+            android:layout_height="0dp">
+            <TextView
+                android:id="@+id/tv_saturation"
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:textAlignment="center"
+                android:text="@string/saturation"
+                android:layout_height="match_parent" />
+            <SeekBar
+                android:id="@+id/SB_saturation"
+                android:layout_width="0dp"
+                android:layout_weight="7"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
     </LinearLayout>
 
 </LinearLayout>

@@ -7,6 +7,9 @@ import java.util.Map;
  * Created by darkh on 3/15/15.
  */
 public class DATA {
+
+
+
     private static Map<String,byte[]> settings = new HashMap<String, byte[]>();
 
     // -- - - - - -- - - - -  key area - - - - - - - - -- - - - - - - - - - - -
@@ -26,6 +29,14 @@ public class DATA {
     public static final byte[] B_HORIZON_POSITION = {0x00};
     public static final byte[] B_VERTICAL_POINT = {0x00};
     public static final byte[] B_VERTICAL_POSITION = {0x00 };
+
+    public static final String N_SCREEN_ONE = "缩放画面 （1）";
+    public static final String N_SCREEN_TWO = "缩放画面 （2）";
+    public static final String N_SCREEN_DEFAULT = "屏幕参数";
+
+    public static final int SCREEN_ONE = 1 ;
+    public static final int SCREEN_TWO = 2 ;
+    public static final int SCREEN_DEFAULT = 0 ;
 
 //    XP330切换信号源命令
 //    CMD: 0x03   设置通道输入源

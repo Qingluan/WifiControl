@@ -2,7 +2,9 @@ package com.qingluan.darkh.wificontroll.Widgets;
 
 import android.app.AlertDialog;
 import android.app.Fragment;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.net.wifi.WifiConfiguration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
@@ -41,6 +43,8 @@ public class PlaceholderFragment  extends Fragment{
     ViewPager viewPager;
     private View rootView;
     private  int fragment_layout_id;
+
+    private static int ScreenStatus = DATA.SCREEN_DEFAULT;
 
 
     /*
@@ -166,10 +170,12 @@ public class PlaceholderFragment  extends Fragment{
                 et_vertical_position = (EditText) rootView.findViewById(R.id.edit_vertical_position);
 
 
-
+                bt_options_select = (Button) rootView.findViewById(R.id.bt_choose_screen_options);
                 bt_send_info = (Button)rootView.findViewById(R.id.bt_send_info);
                 bt_send_info_scale = (Button)rootView.findViewById(R.id.bt_send_info_point);
                 bt_set_resolution = (Button)rootView.findViewById(R.id.bt_choose_resolution);
+
+
                 bt_set_resolution.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -193,30 +199,83 @@ public class PlaceholderFragment  extends Fragment{
 
 
 
+
                     }
                 });
+                bt_options_select.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        LinearLayout linearLayout  ;
+                        LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                        linearLayout = (LinearLayout) inflater.inflate(R.layout.item_resoltion_setting_list,null);
+
+                        final AlertDialog dialog = new AlertDialog.Builder(context).setView(linearLayout).setTitle("选择分辨率").show();
+
+                        ListView lv = (ListView) linearLayout.findViewById(R.id.lv_resolution);
+                        ChooseScreenOptionsListAdapter adapter = new ChooseScreenOptionsListAdapter(context);
+                        lv.setAdapter(adapter);
+                        adapter.setOnAlertListViewClickListener(new ChooseScreenOptionsListAdapter.onAlertListViewClickListener() {
+                            @Override
+                            public void afterClick(int number,String selectedName) {
+                                PlaceholderFragment.ScreenStatus = number;
+                                bt_options_select.setText(selectedName);
+                                dialog.dismiss();
+                            }
+                        });
+
+                    }
+                });
+
                 bt_send_info_scale.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         int vertical_point = Integer.valueOf(et_vertical_point.getText().toString() );
                         int horizontal_point = Integer.valueOf(et_horizontal_point.getText().toString() );
-                        Command command = new Command();
-                        Byte[] b_data = command.ScaleOrPosition(Command.SCALE,vertical_point,horizontal_point);
 
-                        byte[] bb_DATA = Command.toPrimitives(b_data);
+
+                        if (ScreenStatus == DATA.SCREEN_DEFAULT) {
+                            Command command = new Command();
+                            byte[] b_data = command.ScaleOrPosition(DATA.SCREEN_DEFAULT,Command.SCALE, vertical_point, horizontal_point);
+
+                            Talking.sendInfo(context,b_data,new AsySocket.AsyReadListener(){
+
+                                @Override
+                                public void onRead(String data) {
+                                    Toast.makeText(context,data,Toast.LENGTH_SHORT).show();
+                                }
+
+                            });
+                            Log.d("change ","send to server");
+                        }else if (ScreenStatus == DATA.SCREEN_ONE){
+                            Command cmd = new Command();
+
+                            byte[]  bb_DATA = cmd.ScaleOrPosition(DATA.SCREEN_ONE,Command.SCALE,vertical_point, horizontal_point);
+                            Talking.sendInfo(context,bb_DATA,new AsySocket.AsyReadListener(){
+
+                                @Override
+                                public void onRead(String data) {
+                                    Toast.makeText(context,data,Toast.LENGTH_SHORT).show();
+                                }
+
+                            });
+                        }else if(ScreenStatus == DATA.SCREEN_TWO){
+                            Command cmd = new Command();
+
+                            byte[]  bb_DATA = cmd.ScaleOrPosition(DATA.SCREEN_TWO,Command.SCALE,vertical_point, horizontal_point);
+                            Talking.sendInfo(context,bb_DATA,new AsySocket.AsyReadListener(){
+
+                                @Override
+                                public void onRead(String data) {
+                                    Toast.makeText(context,data,Toast.LENGTH_SHORT).show();
+                                }
+
+                            });
+                        }
 
                         /*
                             send data to server
                          */
-                        Talking.sendInfo(context,bb_DATA,new AsySocket.AsyReadListener(){
 
-                            @Override
-                            public void onRead(String data) {
-                                Toast.makeText(context,data,Toast.LENGTH_SHORT).show();
-                            }
-
-                        });
-                        Log.d("change ","send to server");
 
                     }
                 });
@@ -230,23 +289,61 @@ public class PlaceholderFragment  extends Fragment{
                         */
                         int vertical_position =  Integer.valueOf(et_vertical_position.getText().toString() );
                         int horizontal_position = Integer.valueOf(et_horizontal_position.getText().toString() );
+//                        Command command = new Command();
+//                        Byte[] b_data = command.ScaleOrPosition(Command.POSITON,vertical_position,horizontal_position);
+//                        Log.d("Position ","Position");
+//                        byte[] bb_DATA = Command.toPrimitives(b_data);
+//                        /*
+//                            send data to server
+//                         */
+//                        Talking.sendInfo(context,bb_DATA,new AsySocket.AsyReadListener(){
+//
+//                            @Override
+//                            public void onRead(String data) {
+//                                Toast.makeText(context,data,Toast.LENGTH_SHORT).show();
+//                            }
+//
+//                        });
+//                        Log.d("change ","send to server");
 
-                        Command command = new Command();
-                        Byte[] b_data = command.ScaleOrPosition(Command.POSITON,vertical_position,horizontal_position);
-                        Log.d("Position ","Position");
-                        byte[] bb_DATA = Command.toPrimitives(b_data);
-                        /*
-                            send data to server
-                         */
-                        Talking.sendInfo(context,bb_DATA,new AsySocket.AsyReadListener(){
+                        if (ScreenStatus == DATA.SCREEN_DEFAULT) {
+                            Command command = new Command();
+                            byte[] b_data = command.ScaleOrPosition(DATA.SCREEN_DEFAULT,Command.POSITON, vertical_position, horizontal_position);
 
-                            @Override
-                            public void onRead(String data) {
-                                Toast.makeText(context,data,Toast.LENGTH_SHORT).show();
-                            }
+                            Talking.sendInfo(context,b_data,new AsySocket.AsyReadListener(){
 
-                        });
-                        Log.d("change ","send to server");
+                                @Override
+                                public void onRead(String data) {
+                                    Toast.makeText(context,data,Toast.LENGTH_SHORT).show();
+                                }
+
+                            });
+                            Log.d("change ","send to server");
+                        }else if (ScreenStatus == DATA.SCREEN_ONE){
+                            Command cmd = new Command();
+
+                            byte[]  bb_DATA = cmd.ScaleOrPosition(DATA.SCREEN_ONE,Command.POSITON,vertical_position, horizontal_position);
+                            Talking.sendInfo(context,bb_DATA,new AsySocket.AsyReadListener(){
+
+                                @Override
+                                public void onRead(String data) {
+                                    Toast.makeText(context,data,Toast.LENGTH_SHORT).show();
+                                }
+
+                            });
+                        }else if(ScreenStatus == DATA.SCREEN_TWO){
+                            Command cmd = new Command();
+
+                            byte[]  bb_DATA = cmd.ScaleOrPosition(DATA.SCREEN_TWO,Command.POSITON,vertical_position, horizontal_position);
+                            Talking.sendInfo(context,bb_DATA,new AsySocket.AsyReadListener(){
+
+                                @Override
+                                public void onRead(String data) {
+                                    Toast.makeText(context,data,Toast.LENGTH_SHORT).show();
+                                }
+
+                            });
+                        }
                     }
                 });
 

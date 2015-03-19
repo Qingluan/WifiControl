@@ -18,7 +18,7 @@
         <Button
             android:id="@+id/bt_choose_resolution"
             android:layout_width="0dp"
-            android:text="@string/resoution_default"
+            android:text="@string/resoution_setting"
             android:layout_weight="5"
             android:layout_height="fill_parent" />
     </LinearLayout>
@@ -46,7 +46,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="7"
                 android:textAlignment="gravity"
-                android:text="@string/setting_default"
+                android:text="@string/choose_screen_options_one"
                 android:layout_height="fill_parent" />
 
         </LinearLayout>
