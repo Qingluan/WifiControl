@@ -94,6 +94,28 @@ public class Command {
 
     }
 
+    public byte[] Partialize(int screenNumber){
+        this.command.add((byte) 0x08);
+
+        if (screenNumber == 1){
+            this.command.add((byte) 0x03);
+
+        }else  if (screenNumber == 2){
+            this.command.add((byte) 0x83);
+        }
+        this.command.add((byte)0x00);
+        this.command.add((byte)0x00);
+        this.command.add((byte)0x00);
+        this.command.add((byte)0x00);
+        this.command.add((byte)0x00);
+        this.command.add((byte)0x0d);
+
+        Byte[] cmd = this.command.toArray(new Byte[]{});
+        byte odd = getCheck(cmd);
+        cmd[8] = odd;
+        return  Command.toPrimitives(cmd);
+    }
+
     public  byte[] ColorSetting(int ColorSettingType,int progress) {
 
         this.command.add((byte)ColorSettingType);

@@ -85,6 +85,7 @@ public class PlaceholderFragment  extends Fragment{
     SeekBar sb_setting_saturation;
     Button bt_choose_signal ;
     Button bt_froze;
+    Button bt_partial;
     /*
         - - - - - - END - - - - - - -
      */
@@ -454,14 +455,30 @@ public class PlaceholderFragment  extends Fragment{
 
                 break;
             case R.layout.fragment_function_setting:
+                bt_partial = (Button)rootView.findViewById(R.id.bt_partial);
+                bt_partial.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        int number = PlaceholderFragment.visual_number;
+                        Command cmd = new Command();
+                        byte [] data = cmd.Partialize(number);
+                        Talking.sendInfo(context,data,new AsySocket.AsyReadListener() {
+                            @Override
+                            public void onRead(String data) {
+                                Toast.makeText(context,data,Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                });
+
                 bt_froze = (Button) rootView.findViewById(R.id.bt_frozen);
                 bt_froze.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
 
-                        int numbe = PlaceholderFragment.visual_number;
+                        int number = PlaceholderFragment.visual_number;
                         Command cmd = new Command();
-                        byte [] data = cmd.FrozeScreen(numbe);
+                        byte [] data = cmd.FrozeScreen(number);
                         Talking.sendInfo(context,data,new AsySocket.AsyReadListener() {
                             @Override
                             public void onRead(String data) {
