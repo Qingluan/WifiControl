@@ -6,8 +6,10 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 
 import com.qingluan.darkh.wificontroll.Config.DATA;
+import com.qingluan.darkh.wificontroll.IO.Talking;
 import com.qingluan.darkh.wificontroll.Services.BroadcastNotifer;
 import com.qingluan.darkh.wificontroll.Widgets.SectionsPagerAdapter;
 
@@ -21,7 +23,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        Talking.ConnectTest(MainActivity.this);
         __init_UI(); // init UI
         __init_DATA();
     }
@@ -33,6 +35,7 @@ public class MainActivity extends Activity {
 
     private  void __init_UI(){
         main_pages = (ViewPager) this.findViewById(R.id.pager);
+
 
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(main_pages,getFragmentManager(),this,4);

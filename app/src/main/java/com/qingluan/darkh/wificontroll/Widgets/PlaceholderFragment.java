@@ -2,15 +2,10 @@ package com.qingluan.darkh.wificontroll.Widgets;
 
 import android.app.AlertDialog;
 import android.app.Fragment;
-import android.app.ProgressDialog;
 import android.content.Context;
-import android.net.wifi.WifiConfiguration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
-import android.support.v4.widget.ExploreByTouchHelper;
-import android.text.Layout;
-import android.text.TextPaint;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -32,10 +26,7 @@ import com.qingluan.darkh.wificontroll.IO.AsySocket;
 import com.qingluan.darkh.wificontroll.IO.Command;
 import com.qingluan.darkh.wificontroll.IO.Talking;
 import com.qingluan.darkh.wificontroll.IO.ToastShow;
-import com.qingluan.darkh.wificontroll.MainActivity;
 import com.qingluan.darkh.wificontroll.R;
-
-import java.io.UnsupportedEncodingException;
 
 /**
  * Created by darkh on 3/13/15.
@@ -177,6 +168,9 @@ public class PlaceholderFragment  extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         rootView = inflater.inflate(fragment_layout_id,container,false);
+
+
+
 
         switch ( fragment_layout_id){
             case  R.layout.fragment_screen_setting :

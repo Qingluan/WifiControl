@@ -188,6 +188,9 @@ public class DATA {
     public static String  N_XP723 = "XP723";
     public static String  N_XP726 = "XP726";
 
+    public static String TEST_DATA_STRING = "Hello Silly B!";
+    public static byte[] TEST_DATA = TEST_DATA_STRING.getBytes();
+
     public static byte[] getSettings(String key){
         return DATA.settings.get(key);
     }

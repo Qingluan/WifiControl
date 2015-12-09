@@ -43,5 +43,9 @@
     <string name="choose_screen_options_one">屏幕参数</string>
     <string name="resoution_setting">分辨率设定</string>
     <string name="cntrast_setting">对比度</string>
+    <string name="title_activity_not_connect">NotConnectActivity</string>
+    <string name="Network_dead">抱歉网络君死掉了呢╮(╯▽╰)╭ </string>
+    <string name="try_connect">正在试图连接。。。</string>
+    <string name="connect_ok">链接成功</string>
 
 </resources>
