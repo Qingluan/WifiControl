@@ -16,6 +16,7 @@ public class arguments {
     public static final int NETWORK_PORT = 8080;
 //    public static final String HOST = "192.168.59.3";
 //    public static final String HOST = "222.28.142.214";
-    public static final String HOST = "192.168.8.101";
+    public static String HOST = "192.168.1.115";
+    public static final String DEFAULT_TAG = "default";
     public static final String BROADCAST_RECV_FROM_SOCKET = "com.qingluan.darkh.recv_from_socket";
 }

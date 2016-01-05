@@ -15,7 +15,7 @@ import java.io.UnsupportedEncodingException;
  * Created by darkh on 3/15/15.
  */
 public class Talking {
-
+    public  static  boolean IF_NOTIFY ;
     public  static  void  sendInfo(Context context,byte[] data,AsySocket.AsyReadListener asyReadListener){
         AsySocket asySocket = new AsySocket(context,arguments.HOST, arguments.NETWORK_PORT);
 
@@ -45,8 +45,12 @@ public class Talking {
                         Intent i = new Intent(context, NotConnectActivity.class);
                         context.startActivity(i);
                     }
+                    IF_NOTIFY = true;
                 }else{
-                    Toast.makeText(context,context.getString(R.string.connect_ok),Toast.LENGTH_SHORT).show();
+                    if (IF_NOTIFY) {
+                        Toast.makeText(context, context.getString(R.string.connect_ok), Toast.LENGTH_SHORT).show();
+                        IF_NOTIFY = false;
+                    }
                 }
             }
 

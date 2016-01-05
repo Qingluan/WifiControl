@@ -47,5 +47,12 @@
     <string name="Network_dead">抱歉网络君死掉了呢╮(╯▽╰)╭ </string>
     <string name="try_connect">正在试图连接。。。</string>
     <string name="connect_ok">链接成功</string>
+    <string name="choose_ip">选择一个ip或者更改</string>
+    <string name="bt_add_one_ip">添加一个IP</string>
+    <string name="bt_add_one_ip_tag">添加</string>
+    <string name="ip">IP</string>
+    <string name="tag">标签</string>
+    <string name="NULL_ERROR">不能为空</string>
+    <string name="changed_result">更改IP为：</string>
 
 </resources>

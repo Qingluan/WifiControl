@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -21,12 +22,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.qingluan.darkh.wificontroll.Config.DATA;
+import com.qingluan.darkh.wificontroll.Config.DBHandler;
 import com.qingluan.darkh.wificontroll.Config.arguments;
 import com.qingluan.darkh.wificontroll.IO.AsySocket;
 import com.qingluan.darkh.wificontroll.IO.Command;
 import com.qingluan.darkh.wificontroll.IO.Talking;
 import com.qingluan.darkh.wificontroll.IO.ToastShow;
+import com.qingluan.darkh.wificontroll.MainActivity;
 import com.qingluan.darkh.wificontroll.R;
+
+import java.util.List;
 
 /**
  * Created by darkh on 3/13/15.
@@ -79,6 +84,7 @@ public class PlaceholderFragment  extends Fragment{
     Button bt_choose_signal ;
     Button bt_froze;
     Button bt_partial;
+
     /*
         - - - - - - END - - - - - - -
      */
@@ -165,7 +171,7 @@ public class PlaceholderFragment  extends Fragment{
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
 
         rootView = inflater.inflate(fragment_layout_id,container,false);
 
@@ -450,6 +456,7 @@ public class PlaceholderFragment  extends Fragment{
                         }
                     }
                 });
+
 
 
                 break;

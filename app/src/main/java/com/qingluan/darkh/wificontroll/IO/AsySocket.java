@@ -33,7 +33,7 @@ public class AsySocket  {
     public String LOG = this.getClass().getName();
 
     int port = 0 ;
-    String ip = "127.0.0.1";
+    String ip = arguments.HOST;
     SocketAddress NetworkAddress ;
     Socket NetworkHandler;
     List<DataInputStream> InStreams = new ArrayList<DataInputStream>();
@@ -46,9 +46,9 @@ public class AsySocket  {
         NetworkHandler = new Socket();
         this.context = context;
         this.ip = ip;
-            this.port = port;
-            Log.d(LOG,"init ...");
-            NetworkAddress = new InetSocketAddress(this.ip,this.port);
+        this.port = port;
+        Log.d(LOG,"init ...");
+        NetworkAddress = new InetSocketAddress(this.ip,this.port);
 
 
 
